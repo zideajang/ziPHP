@@ -1,0 +1,19 @@
+{
+    "name": "zideajang/zi-php",
+    "description": "mvc php web framework",
+    "type": "project",
+    "license": "mit",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "zideajang",
+            "email": "zidea@163.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
