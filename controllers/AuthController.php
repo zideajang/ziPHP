@@ -4,6 +4,7 @@
 namespace app\controllers;
 use app\core\Controller;
 use app\core\Request;
+use app\models\RegisterModel;
 
 /**
  * Class AuthController
@@ -21,10 +22,28 @@ use app\core\Request;
     }
     public function register(Request $request)
     {
-        if($request->isPost()){
-            return "Handle submitted data";
-        }
+        $model = new RegisterModel();
         $this->setLayout('auth');
-        return $this->render('register');
+        if($request->isPost()){
+            $model->loadData($request->getBody());
+
+            // echo '<pre>';
+            // var_dump($registerModel);
+            // echo '<\pre>';
+            // exit;
+            
+            if($model->validate() && $model->register()){
+                return 'Success';
+            }
+            // echo '<pre>';
+            // var_dump($registerModel->errors);
+            // echo '<\pre>';
+            // exit;
+
+
+            return $this->render('register',[ 'model'=>$model]);
+            // return "Handle submitted data";
+        }
+        return $this->render('register',['model'=>$model]);
     }
  }
